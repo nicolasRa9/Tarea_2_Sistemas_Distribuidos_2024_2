@@ -1,0 +1,2 @@
+# Tarea_2_Sistemas_Distribuidos_2024_2
+trabajo 2
