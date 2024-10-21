@@ -19,7 +19,9 @@ class OrderManagementService(pb2_grpc.OrderManagementServicer):
         # Configura el productor de Kafka
         self.producer = KafkaProducer(
             bootstrap_servers=['localhost:9092'],
-            value_serializer=lambda v: json.dumps(v).encode('utf-8')
+            value_serializer=lambda v: json.dumps(v).encode('utf-8'),
+            request_timeout_ms=3000, 
+            retries=5
         )
 
         # Configura el cliente de Elasticsearch
