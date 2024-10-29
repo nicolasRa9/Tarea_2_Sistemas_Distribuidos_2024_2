@@ -63,11 +63,11 @@ docker-compose up --build
 Este comando construirá las imágenes de Docker y levantará todos los contenedores. Los servicios estarán configurados para iniciar en el orden correcto, con Zookeeper y Kafka como primeras dependencias.
 
 ##Acceder a las Interfaces de Usuario:
--Kibana (para ver las métricas en Elasticsearch): http://localhost:5601
--Prometheus (para ver las métricas de cAdvisor): http://localhost:9090
--Grafana (para visualizar dashboards de rendimiento): http://localhost:3001
--Usuario y contraseña predeterminados: admin / admin
--cAdvisor (para monitorear los recursos de cada contenedor): http://localhost:8080
+-**Kibana** (para ver las métricas en Elasticsearch): http://localhost:5601
+-**Prometheus** (para ver las métricas de cAdvisor): http://localhost:9090
+-**Grafana** (para visualizar dashboards de rendimiento): http://localhost:3001
+-**Usuario y contraseña predeterminados**: admin / admin
+-**cAdvisor** (para monitorear los recursos de cada contenedor): http://localhost:8080
 Detener los Contenedores
 ##Para detener todos los contenedores, usa:
 ```env
@@ -83,9 +83,9 @@ Notas Adicionales
 Asegúrate de configurar correctamente el archivo .env con las credenciales de tu servicio SMTP si deseas que el Notification Service funcione.
 El índice de Elasticsearch (performance_metrics) almacenará métricas del sistema, como tiempos de respuesta y throughput, para visualización en Kibana.
 ##Visualización de Métricas
--Throughput del Sistema: Observa el número de pedidos procesados en intervalos específicos en Grafana.
--Latencia y Tiempo de Procesamiento: Usa Kibana para monitorear la latencia entre eventos y el tiempo de procesamiento total en Elasticsearch.
--Concurrencia y Cuellos de Botella: Identifica microservicios con tiempos elevados o cuellos de botella en el procesamiento en los dashboards de Grafana.
+-**Throughput del Sistema**: Observa el número de pedidos procesados en intervalos específicos en Grafana.
+-**Latencia y Tiempo de Procesamiento**: Usa Kibana para monitorear la latencia entre eventos y el tiempo de procesamiento total en Elasticsearch.
+-**Concurrencia y Cuellos de Botella**: Identifica microservicios con tiempos elevados o cuellos de botella en el procesamiento en los dashboards de Grafana.
 ##Solución de Problemas
 Errores en los Servicios: Si algún servicio no se levanta correctamente, verifica los logs del contenedor usando:
 
