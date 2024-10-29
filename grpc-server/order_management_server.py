@@ -16,18 +16,16 @@ logging.basicConfig(level=logging.INFO)
 class OrderManagementService(pb2_grpc.OrderManagementServicer):
     
     def __init__(self):
-        # Configura el productor de Kafka
+        # Configura el productor de Kafka con múltiples brokers
         self.producer = KafkaProducer(
-            bootstrap_servers=['localhost:9092'],
-            value_serializer=lambda v: json.dumps(v).encode('utf-8'),
-            request_timeout_ms=3000, 
-            retries=5
+            bootstrap_servers=['kafka-broker-1:9092', 'kafka-broker-2:9093'],
+            value_serializer=lambda v: json.dumps(v).encode('utf-8')
         )
 
         # Configura el cliente de Elasticsearch
         self.es = Elasticsearch(
-            [{'host': 'localhost', 'port': 9200, 'scheme': 'http'}],  # Agregar esquema http
-            headers={"Content-Type": "application/json"}  # Forzar uso de Content-Type compatible
+            [{'host': 'elasticsearch', 'port': 9200, 'scheme': 'http'}],
+            headers={"Content-Type": "application/json"}
         )
 
     def CreateOrder(self, request, context):
