@@ -64,10 +64,16 @@ Este comando construirá las imágenes de Docker y levantará todos los contened
 
 ##Acceder a las Interfaces de Usuario:
 -**Kibana** (para ver las métricas en Elasticsearch): http://localhost:5601
+
+
 -**Prometheus** (para ver las métricas de cAdvisor): http://localhost:9090
+
 -**Grafana** (para visualizar dashboards de rendimiento): http://localhost:3001
+
 -**Usuario y contraseña predeterminados**: admin / admin
+
 -**cAdvisor** (para monitorear los recursos de cada contenedor): http://localhost:8080
+
 Detener los Contenedores
 ##Para detener todos los contenedores, usa:
 ```env
