@@ -32,7 +32,7 @@ SMTP_USER=your_email@example.com
 SMTP_PASS=your_password
 ****
 ```
-##Instrucciones de Ejecución
+#Instrucciones de Ejecución
 
 Clonar el Repositorio:
 ```env
@@ -89,9 +89,13 @@ Notas Adicionales
 Asegúrate de configurar correctamente el archivo .env con las credenciales de tu servicio SMTP si deseas que el Notification Service funcione.
 El índice de Elasticsearch (performance_metrics) almacenará métricas del sistema, como tiempos de respuesta y throughput, para visualización en Kibana.
 ##Visualización de Métricas
+
 -**Throughput del Sistema**: Observa el número de pedidos procesados en intervalos específicos en Grafana.
+
 -**Latencia y Tiempo de Procesamiento**: Usa Kibana para monitorear la latencia entre eventos y el tiempo de procesamiento total en Elasticsearch.
+
 -**Concurrencia y Cuellos de Botella**: Identifica microservicios con tiempos elevados o cuellos de botella en el procesamiento en los dashboards de Grafana.
+
 ##Solución de Problemas
 Errores en los Servicios: Si algún servicio no se levanta correctamente, verifica los logs del contenedor usando:
 
