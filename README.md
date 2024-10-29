@@ -2,7 +2,7 @@
 
 Este proyecto implementa una arquitectura de microservicios para un sistema de gestión de pedidos, donde cada microservicio realiza una tarea específica (como gestionar pedidos, procesar pagos, enviar notificaciones y monitorear el rendimiento del sistema). La infraestructura se ejecuta en contenedores Docker, administrados mediante Docker Compose.
 
-link de video:
+link de video:https://www.youtube.com/watch?v=tDCzARWneiQ&ab_channel=SEBASTIANSILVABERRIOS
 
 ## Estructura del Proyecto
 
