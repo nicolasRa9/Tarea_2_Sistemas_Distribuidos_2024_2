@@ -31,3 +31,76 @@ SMTP_HOST=smtp.example.com
 SMTP_USER=your_email@example.com
 SMTP_PASS=your_password
 ****
+```
+##Instrucciones de Ejecución
+
+Clonar el Repositorio:
+```env
+bash
+Copiar código
+git clone <URL_DEL_REPOSITORIO>
+cd <NOMBRE_DEL_DIRECTORIO>
+```
+Configuración de Elasticsearch y Prometheus:
+
+Crea un archivo prometheus.yml en el directorio raíz para que Prometheus pueda recolectar métricas desde cAdvisor.
+
+```env
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+```
+##Levantar los Contenedores
+Ejecuta el siguiente comando para construir y levantar todos los servicios definidos en docker-compose.yml:
+
+```env
+docker-compose up --build
+```
+Este comando construirá las imágenes de Docker y levantará todos los contenedores. Los servicios estarán configurados para iniciar en el orden correcto, con Zookeeper y Kafka como primeras dependencias.
+
+##Acceder a las Interfaces de Usuario:
+-Kibana (para ver las métricas en Elasticsearch): http://localhost:5601
+-Prometheus (para ver las métricas de cAdvisor): http://localhost:9090
+-Grafana (para visualizar dashboards de rendimiento): http://localhost:3001
+-Usuario y contraseña predeterminados: admin / admin
+-cAdvisor (para monitorear los recursos de cada contenedor): http://localhost:8080
+Detener los Contenedores
+##Para detener todos los contenedores, usa:
+```env
+docker-compose down
+Estructura de Directorios
+/grpc-server: Contiene el código y configuración del servidor gRPC.
+/order-processing: Código y configuración del microservicio de procesamiento de pedidos.
+/notification-service: Código y configuración para el servicio de notificaciones.
+/prometheus.yml: Configuración para Prometheus.
+```
+
+Notas Adicionales
+Asegúrate de configurar correctamente el archivo .env con las credenciales de tu servicio SMTP si deseas que el Notification Service funcione.
+El índice de Elasticsearch (performance_metrics) almacenará métricas del sistema, como tiempos de respuesta y throughput, para visualización en Kibana.
+##Visualización de Métricas
+-Throughput del Sistema: Observa el número de pedidos procesados en intervalos específicos en Grafana.
+-Latencia y Tiempo de Procesamiento: Usa Kibana para monitorear la latencia entre eventos y el tiempo de procesamiento total en Elasticsearch.
+-Concurrencia y Cuellos de Botella: Identifica microservicios con tiempos elevados o cuellos de botella en el procesamiento en los dashboards de Grafana.
+##Solución de Problemas
+Errores en los Servicios: Si algún servicio no se levanta correctamente, verifica los logs del contenedor usando:
+
+```env
+docker-compose logs <nombre_del_servicio>
+```
+Problemas de Conexión con Elasticsearch y Kibana: Asegúrate de que Elasticsearch esté completamente iniciado antes de iniciar Kibana. Puedes observar los logs de Elasticsearch y esperar a que indique started.
+
+Correo Electrónico en Notification Service: Si el Notification Service no envía correos, verifica la configuración del servidor SMTP en el archivo .env y asegúrate de que la autenticación sea correcta.
+
+Error de Red o Conexión: Asegúrate de que todos los servicios están en la misma red Docker (my-network). Puedes verificar la red ejecutando:
+
+```env
+Copiar código
+docker network ls
+```
+Tiempo de Ejecución de gRPC Server: Si el servidor gRPC no responde, asegúrate de que el cliente tenga la dirección correcta (GRPC_SERVER_ADDRESS) y que el puerto esté mapeado en docker-compose.yml.
+
