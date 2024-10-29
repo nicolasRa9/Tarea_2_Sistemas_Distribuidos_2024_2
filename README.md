@@ -1,4 +1,4 @@
-# Proyecto de Microservicios con Docker
+# Tarea 2
 
 Este proyecto implementa una arquitectura de microservicios para un sistema de gestión de pedidos, donde cada microservicio realiza una tarea específica (como gestionar pedidos, procesar pagos, enviar notificaciones y monitorear el rendimiento del sistema). La infraestructura se ejecuta en contenedores Docker, administrados mediante Docker Compose.
 
